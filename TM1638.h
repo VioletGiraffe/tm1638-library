@@ -58,6 +58,8 @@ class TM1638 : public TM16XX
 
     /** Returns the pressed buttons as a bit set (left to right). */
     virtual byte getButtons();
+	/** buttonNumber = 1..8 */
+	bool isButtonPressed(int8_t buttonNumber);
 
   protected:
     virtual void sendChar(byte pos, byte data, boolean dot);

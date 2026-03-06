@@ -129,6 +129,13 @@ byte TM1638::getButtons(void)
   return keys;
 }
 
+/** buttonNumber = 1..8 */
+bool TM1638::isButtonPressed(int8_t buttonNumber)
+{
+	const byte buttons = getButtons();
+	return (buttons & (1u << (buttonNumber - 1))) != 0;
+}
+
 void TM1638::sendChar(byte pos, byte data, boolean dot)
 {
 	sendData(pos << 1, data | (dot ? 0b10000000 : 0));
