@@ -57,6 +57,7 @@ class TM16XX
     /** Set the display to the String (defaults to built in font) */
 	virtual void setDisplayToString(String string, const word dots = 0, const byte pos = 0,
 		const byte font[] = FONT_DEFAULT);
+	void setDisplayToStringWithDots(String string);
 
   protected:
 	#if defined(ARDUINO) && ARDUINO >= 100

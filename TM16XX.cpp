@@ -119,6 +119,27 @@ void TM16XX::setDisplayToString(const String string, const word dots, const byte
   }
 }
 
+void TM16XX::setDisplayToStringWithDots(String string)
+{
+	uint8_t dotIndex = 0;
+	word dots = 0;
+	for (uint i = 0; i < string.length(); )
+	{
+		if (i > 0 && string[i] == '.')
+		{
+			const uint8_t dotPos = 7 - (i - 1);
+			dots |= (1u << dotPos);
+			string.remove(i, 1);
+		}
+		else
+			++i;
+
+		++dotIndex;
+	}
+
+	setDisplayToString(string, dots);
+};
+
 void TM16XX::sendCommand(byte cmd)
 {
   digitalWrite(strobePin, LOW);
